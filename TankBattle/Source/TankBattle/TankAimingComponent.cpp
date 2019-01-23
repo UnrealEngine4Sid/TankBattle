@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "TankBarrel.h"
 #include "TankAimingComponent.h"
 
 // Sets default values for this component's properties
@@ -38,7 +37,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileLaunchSpee
 	}
 }
 
-void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
 {
 	BarrelStaticMesh = BarrelToSet;
 }
@@ -52,6 +51,6 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
 	// move barrel
-	BarrelStaticMesh->ElevateBarrel(5); // TODO remove hard coded number
+	//BarrelStaticMesh->ElevateBarrel(5); // TODO remove hard coded number
 }
 

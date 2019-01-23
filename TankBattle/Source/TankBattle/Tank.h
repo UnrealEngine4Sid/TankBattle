@@ -7,8 +7,6 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
-class UTankBarrel
-
 UCLASS()
 class TANKBATTLE_API ATank : public APawn
 {
@@ -22,7 +20,7 @@ public:
 
 	// Set barrel static mesh
 	UFUNCTION(BlueprintCallable, Category = "Setup")
-	void SetBarrelReference(UTankBarrel* BarrelToSet);
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
 protected:
 	// Called when the game starts or when spawned
