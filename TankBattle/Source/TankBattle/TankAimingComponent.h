@@ -11,6 +11,10 @@
 
 #define OUT
 
+// Forward declaration
+class UTankBarrel; 
+
+// Holds barrel's properties and Elevate method
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class TANKBATTLE_API UTankAimingComponent : public UActorComponent
 {
@@ -24,12 +28,12 @@ public:
 	void AimAt(FVector HitLocation, float ProjectileLaunchSpeed);
 
 	// Set barrel static mesh
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
 
 private:
 
 	// Holds barrel static mesh
-	UStaticMeshComponent* BarrelStaticMesh = nullptr;
+	UTankBarrel* BarrelStaticMesh = nullptr;
 
 	void MoveBarrelTowards(FVector AimDirection);
 	

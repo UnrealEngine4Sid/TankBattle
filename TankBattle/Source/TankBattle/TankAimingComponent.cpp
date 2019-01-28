@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAimingComponent.h"
+#include "TankBarrel.h"
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -13,11 +14,11 @@ UTankAimingComponent::UTankAimingComponent()
 }
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileLaunchSpeed)
-{
+{	
 	// do nothing if no barrel mesh set
 	if (!BarrelStaticMesh) { return; }
-
-	FVector OutLaunchVelocity; // out paremeter
+		
+	FVector OutLaunchVelocity; // out parameter
 	FVector StartLocation = BarrelStaticMesh->GetSocketLocation(FName("Projectile"));
 	
 	bool bAimSolution = UGameplayStatics::SuggestProjectileVelocity(
@@ -29,6 +30,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileLaunchSpee
 							ESuggestProjVelocityTraceOption::DoNotTrace
 						);
 
+
 	if (bAimSolution)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
@@ -37,7 +39,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileLaunchSpee
 	}
 }
 
-void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent * BarrelToSet)
+void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 {
 	BarrelStaticMesh = BarrelToSet;
 }
@@ -50,7 +52,6 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 
-	// move barrel
-	//BarrelStaticMesh->ElevateBarrel(5); // TODO remove hard coded number
+	BarrelStaticMesh->Elevate(5); // TODO remove magic number
 }
 
