@@ -6,7 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "TankTurretComponent.generated.h"
 
-UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent), hideCategories = ("Collision"))
 class TANKBATTLE_API UTankTurretComponent : public UStaticMeshComponent
 {
 	GENERATED_BODY()
@@ -18,5 +18,5 @@ public:
 private:
 
 	UPROPERTY(EditAnywhere, Category = "_Setup")
-		float MaxDegreePerSecond = 5;
+	float MaxDegreePerSecond = 5;
 };
