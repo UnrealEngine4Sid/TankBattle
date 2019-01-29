@@ -9,6 +9,7 @@
 //Forward declaration
 class UTankBarrel;
 class UTankAimingComponent;
+class UTankTurretComponent;
 
 UCLASS()
 class TANKBATTLE_API ATank : public APawn
@@ -24,6 +25,9 @@ public:
 	// Set barrel static mesh
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void SetTurretReference(UTankTurretComponent* TurretToSet);
 
 protected:
 	// Called when the game starts or when spawned
