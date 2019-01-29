@@ -2,15 +2,13 @@
 
 #pragma once
 
-#include "Tank.h"
 #include "CoreMinimal.h"
-#include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
 #include "TankPlayerController.generated.h"
 
-/**
- * 
- */
+// Forward Declaration
+class ATank;
+
 UCLASS()
 class TANKBATTLE_API ATankPlayerController : public APlayerController
 {
@@ -22,7 +20,7 @@ public:
 
 private:
 	ATank* GetControlledTank() const;
-	//Start moving tank barrels towards crosshair
+	//Start moving tank barrels towards cross hair
 	void AimTowardsCrosshair();
 	// return OUT location, return true if hit something
 	bool GetSightRayHitLocation(FVector& OutHitLocation) const;

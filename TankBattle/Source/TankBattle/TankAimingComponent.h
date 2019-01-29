@@ -3,9 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
-#include "Components/StaticMeshComponent.h"
-#include "Kismet/GameplayStatics.h"
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
 
@@ -13,6 +10,7 @@
 
 // Forward declaration
 class UTankBarrel; 
+class UStaticMeshComponent;
 
 // Holds barrel's properties and Elevate method
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )

@@ -2,6 +2,9 @@
 
 #include "TankAimingComponent.h"
 #include "TankBarrel.h"
+#include "Components/StaticMeshComponent.h"
+#include "Kismet/GameplayStatics.h"
+#include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -26,7 +29,10 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float ProjectileLaunchSpee
 							OUT OutLaunchVelocity,
 							StartLocation,
 							HitLocation,
-							ProjectileLaunchSpeed,
+							ProjectileLaunchSpeed, 
+							false,
+							0,
+							0,
 							ESuggestProjVelocityTraceOption::DoNotTrace
 						);
 
@@ -47,11 +53,10 @@ void UTankAimingComponent::SetBarrelReference(UTankBarrel * BarrelToSet)
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
 	// work out difference between current barrel rotation and aim direction
-	auto BarrelRotator = BarrelStaticMesh->GetForwardVector().Rotation();
-	auto AimAsRotator = AimDirection.Rotation();
+	FRotator BarrelRotator = BarrelStaticMesh->GetForwardVector().Rotation();
+	FRotator AimAsRotator = AimDirection.Rotation();
+	FRotator DeltaRotator = AimAsRotator - BarrelRotator;
 
-	auto DeltaRotator = AimAsRotator - BarrelRotator;
-
-	BarrelStaticMesh->Elevate(5); // TODO remove magic number
+	BarrelStaticMesh->Elevate(DeltaRotator.Pitch); // TODO remove magic number
 }
 
